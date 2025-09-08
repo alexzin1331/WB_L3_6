@@ -1,0 +1,11 @@
+server:
+  port: "8080"
+
+database:
+  host: "db"
+  port: "5432"
+  user: "postgres"
+  password: "password"
+  name: "salesdb"
+
+#docker exec -it 910c0baa7702b4a11526c02d1e0dae825daadf88f0c2c23b9845e6d56949b221 psql -U postgres -d salesdb -c "SELECT * FROM sales"
