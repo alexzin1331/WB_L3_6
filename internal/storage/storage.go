@@ -85,8 +85,8 @@ func (s *Storage) GetAnalytics(from, to time.Time) (*models.AnalyticsResponse, e
 			COALESCE(SUM(amount), 0) as sum,
 			COALESCE(AVG(amount), 0) as average,
 			COUNT(*) as count,
-			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY amount) as median,
-			PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY amount) as percentile90
+			COALESCE(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY amount), 0) as median,
+			COALESCE(PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY amount), 0) as percentile90
 		FROM sales 
 		WHERE date BETWEEN $1 AND $2
 	`
